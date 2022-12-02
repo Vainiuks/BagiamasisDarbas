@@ -34,6 +34,18 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     }
 }
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    if (isset($_POST['submit_filter'])) {
+        $submitted_Filters = array(); 
+        foreach ($_POST as $filter => $value) {
+                if($filter != 'submit_filter') {
+                    array_push($submitted_Filters, $filter);
+                }
+        }
+        $productObj->getFilteredProducts($submitted_Filters);
+    }
+}
+
 ?>
 
 
@@ -54,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <?php
     if (isset($_GET['success'])) {
         if ($_GET['success'] == "purchase") { ?>
-            <div class="container col-lg-4 py-1 d-flex justify-content-start"" style=" margin-left: 272px; margin-bottom:-25px;">
+            <div class="container col-lg-4 py-1 d-flex justify-content-start" style=" margin-left: 272px; margin-bottom:-25px;">
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     <div class="row">
                         <div class="col-lg-11">
@@ -76,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <div class="container py-1">
         <div class="row" style="margin-top:5px;">
             <div class="col-lg-3 col-md-6">
+            <form method="POST">
                 <div class="accordion" id="accordionExample">
                     <?php foreach ($categories as $category => $value) : ?>
                         <div class="card">
@@ -90,7 +103,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                 <div class="card-body">
                                     <?php foreach ($attributes as $attribute => $a_value) : ?>
                                         <?php if ($value['category_Name'] == $a_value['category_Name']) : ?>
-                                            <input class="form-check-input" type="checkbox" form="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" name="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" value="<?php echo $a_value['display_Name']; ?>">
+                                            <input  class="form-check-input" 
+                                                    type="checkbox" 
+                                                    name="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" 
+                                                    value="<?php echo $a_value['display_Name']; ?>"
+                                                >
                                             <?php echo $a_value['display_Name']; ?>
                                             <br>
                                         <?php endif; ?>
@@ -101,11 +118,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     <?php endforeach; ?>
                 </div>
                 <div class="col-lg-3 col-md-6 d-inline">
-                    <form action="">
-                        <button class="btn btn-primary btn-sm" type="submit" name="submit_filter" value="" style="width:150px; margin-top:8px;">Filtruoti</button>
-                        <button class="btn btn-outline-primary btn-sm mt-2" type="submit" name="reset_filters" style="width:150px;">Išvalyti filtrus</button>
-                    </form>
-                </div>
+                        <button class="btn btn-primary btn-sm" type="submit" name="submit_filter" style="width:150px; margin-top:8px;">Filtruoti</button>
+                        <!-- <button class="btn btn-outline-primary btn-sm mt-2" type="submit" name="reset_filters" style="width:150px;">Išvalyti filtrus</button> -->
+                    </div>
+                </form>
             </div>
             <div class="col-lg-9 col-md-6">
                 <?php foreach ($getProducts as $product => $value) :  ?>
@@ -134,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <button class="btn btn-primary btn-sm" type="submit" name="productID" value="<?php printf($value['productID']); ?>">Aprašymas</button>
                                 </form>
                                 <?php if (isset($_SESSION['logged'])) : ?>
-                                    <form method="POST">
+                                    <form action="POST">
                                         <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
                                         <button class="btn btn-outline-primary btn-sm mt-2" type="submit" name="submit_product">Pridėti į krepšelį</button>
                                     </form>

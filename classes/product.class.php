@@ -37,4 +37,17 @@ class Product extends Database
 
         return $productArray;
     }
+
+    public function getFilteredProducts($filters) {
+
+        $filtersArr = array();
+        $tmp = array();
+        foreach($filters as $filter => $value) {
+            $res = explode('-', $value);
+            VAR_EXPORT($res);
+            $filtersArray = 'as';
+        }
+        die();
+
+    }
 }
