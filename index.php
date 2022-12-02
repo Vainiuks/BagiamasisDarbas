@@ -12,13 +12,8 @@ $filterObj = new Filter();
 $getProducts = $productObj->getProducts();
 $currentProductsInCart = array();
 $currentProductsInCart = $cartObj->getProductsFromCart();
-// $getFilters = $filterObj->getFilters();
-
-// var_Export($getFilters);
-// foreach($getFilters as $filter => $value) {
-    // echo "<p>" . var_export($value) . "</p><br>"; 
-// }
-
+$categories = $filterObj->getCategories();
+$attributes = $filterObj->getAttributes();
 
 //Add to cart item
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
@@ -59,21 +54,21 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     <?php
     if (isset($_GET['success'])) {
         if ($_GET['success'] == "purchase") { ?>
-        <div class="container col-lg-4 py-1 d-flex justify-content-start"" style="margin-left: 272px; margin-bottom:-25px;">
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <div class="row">
-                    <div class="col-lg-11">
-                        <h4 class="alert-heading">Ačiū, kad pirkote!</h4>
-                        <p>Jūsų užsakymas greitu metu bus išsiųstas Jums!</p>
-                    </div>
-                    <div class="col-lg-1">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="border: none; background-color:#d1e7dd;">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+            <div class="container col-lg-4 py-1 d-flex justify-content-start"" style=" margin-left: 272px; margin-bottom:-25px;">
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <div class="row">
+                        <div class="col-lg-11">
+                            <h4 class="alert-heading">Ačiū, kad pirkote!</h4>
+                            <p>Jūsų užsakymas greitu metu bus išsiųstas Jums!</p>
+                        </div>
+                        <div class="col-lg-1">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="border: none; background-color:#d1e7dd;">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     <?php   }
     }
     ?>
@@ -82,40 +77,52 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="row" style="margin-top:5px;">
             <div class="col-lg-3 col-md-6">
                 <div class="accordion" id="accordionExample">
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" 
-                                        data-toggle="collapse" data-target="#collapseOne" 
-                                        aria-expanded="false" aria-controls="collapseOne">
-                                    Filtras1# <i class="fa-solid fa-plus"></i>
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="card-body">
-                                Požymiai
+                    <?php foreach ($categories as $category => $value) : ?>
+                        <div class="card">
+                            <div class="card-header" id="heading<?php echo $value['category_Name']; ?>">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapse<?php echo $value['category_Name']; ?>" aria-expanded="false" aria-controls="collapse<?php echo $value['category_Name']; ?>">
+                                        <?php echo $value['display_Category_Name']; ?> <i class="fa-solid fa-plus"></i>
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse<?php echo $value['category_Name']; ?>" class="collapse" aria-labelledby="heading<?php echo $value['category_Name']; ?>" data-parent="#accordionExample">
+                                <div class="card-body">
+                                    <?php foreach ($attributes as $attribute => $a_value) : ?>
+                                        <?php if ($value['category_Name'] == $a_value['category_Name']) : ?>
+                                            <input class="form-check-input" type="checkbox" form="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" name="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" value="<?php echo $a_value['display_Name']; ?>">
+                                            <?php echo $a_value['display_Name']; ?>
+                                            <br>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php endforeach; ?>
+                </div>
+                <div class="col-lg-3 col-md-6 d-inline">
+                    <form action="">
+                        <button class="btn btn-primary btn-sm" type="submit" name="submit_filter" value="" style="width:150px; margin-top:8px;">Filtruoti</button>
+                        <button class="btn btn-outline-primary btn-sm mt-2" type="submit" name="reset_filters" style="width:150px;">Išvalyti filtrus</button>
+                    </form>
                 </div>
             </div>
             <div class="col-lg-9 col-md-6">
                 <?php foreach ($getProducts as $product => $value) :  ?>
                     <div class="row p-2 bg-white border rounded">
                         <div class="col-md-3 mt-1">
-                            <a href="<?php printf('%s?productID=%s', 'product_detail_page.php',  $value['productID']); ?>"><img 
-                            class="img-fluid img-responsive rounded product-image" src="<?php echo $value['product_Image'] ?>" alt="product1" class="product_image"></a>
+                            <a href="<?php printf('%s?productID=%s', 'product_detail_page.php',  $value['productID']); ?>"><img class="img-fluid img-responsive rounded product-image" src="<?php echo $value['product_Image'] ?>" alt="product1" class="product_image"></a>
                         </div>
                         <div class="col-md-6 mt-1">
                             <h5><?php echo $value['product_Name']; ?></h5>
                             <div class="d-flex flex-row">
                                 <div class="ratings mr-2"><i class="fa fa-star"></i><i class="fa fa-star"></i><i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i></div><span>310</span>
+                                    <i class="fa fa-star"></i>
+                                </div><span>310</span>
                             </div>
                             <div class="mt-1 mb-1 spec-1"><span><?php echo $value['car_Model']; ?></span><span class="dot"></span>
-                            <span><?php echo $value['car_Brand']; ?></span><span class="dot"></span><span><?php echo $value['product_Brand']; ?><br></span></div>
+                                <span><?php echo $value['car_Brand']; ?></span><span class="dot"></span><span><?php echo $value['product_Brand']; ?><br></span>
+                            </div>
                             <p class="text-justify text-truncate para mb-0"><?php echo $value['product_Description']; ?><br><br></p>
                         </div>
                         <div class="align-items-center align-content-center col-md-3 border-left mt-1">
@@ -124,8 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                             </div>
                             <div class="d-flex flex-column mt-4">
                                 <form action="product_detail_page.php?" method="GET" enctype="multipart/form-data">
-                                    <button class="btn btn-primary btn-sm" type="submit" name="productID" 
-                                    value="<?php printf($value['productID']); ?>" >Aprašymas</button>
+                                    <button class="btn btn-primary btn-sm" type="submit" name="productID" value="<?php printf($value['productID']); ?>">Aprašymas</button>
                                 </form>
                                 <?php if (isset($_SESSION['logged'])) : ?>
                                     <form method="POST">
@@ -143,6 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </div>
 
 </body>
+
 </html>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
