@@ -131,47 +131,41 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 							<dl class="param param-feature">
 								<dt>Product brand</dt>
 								<dd><?php echo $value['product_Brand']; ?></dd>
-							</dl> <!-- item-property-hor .// -->
+							</dl>
 							<dl class="param param-feature">
 								<dt>Car model</dt>
 								<dd><?php echo $value['car_Model']; ?></dd>
-							</dl> <!-- item-property-hor .// -->
+							</dl>
 							<dl class="param param-feature">
 								<dt>Car brand</dt>
 								<dd><?php echo $value['car_Brand']; ?></dd>
-							</dl> <!-- item-property-hor .// -->
+							</dl>
 							<dl class="param param-feature">
 								<dt>Color</dt>
 								<dd>Black and white</dd>
-							</dl> <!-- item-property-hor .// -->
+							</dl>
 							<dl class="param param-feature">
 								<dt>Delivery</dt>
 								<dd>Russia, USA, and Europe</dd>
-							</dl> <!-- item-property-hor .// -->
+							</dl>
 
 							<hr>
-							<form method="POST">
-								<div class="row">
-									<!-- <div class="col-sm-5"> -->
-									<!-- <dl class="param param-inline"> -->
-									<p>Quantity: </p>
-									<!-- <dd> -->
-									<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-										<button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-											<i class="fa fa-minus"></i>
-										</button>
+							<div class="row">
+								<p>Quantity: </p>
+								<div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+									<button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+										<i class="fa fa-minus"></i>
+									</button>
 
-										<input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" />
+									<input id="form1" min="0" name="quantity" value="1" type="number" form="quantity" class="form-control form-control-sm" style="text-align:center; width: 70px;" />
 
-										<button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-											<i class="fa fa-plus"></i>
-										</button>
-									</div>
-									<!-- </dd> -->
-									<!-- </dl> item-property .// -->
-									<!-- </div> col.// -->
-								</div> <!-- row.// -->
-								<hr>
+									<button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+										<i class="fa fa-plus"></i>
+									</button>
+								</div>
+							</div>
+							<hr>
+							<form id="quantity" method="POST">
 								<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
 								<button class="btn btn-lg btn-outline-primary" type="submit" name="submit_product"> <i class="fa fa-shopping-cart"></i> Pridėti į krepšelį</button>
 							</form>
@@ -179,11 +173,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 								<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
 								<button class="btn btn-lg btn-primary" class="fa fa-shopping-cart">Nusipirkti dabar</button>
 							</form>
-						</article> <!-- card-body.// -->
-					</aside> <!-- col.// -->
-				</div> <!-- row.// -->
+						</article>
+					</aside>
+				</div>
 			<?php endforeach; ?>
-		</div> <!-- card.// -->
+		</div>
 
 		<div class="d-flex justify-content-center gx-5" style="padding: 5px;">
 			<div class="col-lg-10 col-md-6 p-3">

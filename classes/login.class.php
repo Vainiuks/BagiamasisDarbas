@@ -1,6 +1,9 @@
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 require_once 'database.class.php';
-session_start();
 
 class Login extends Database
 {

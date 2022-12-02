@@ -1,7 +1,10 @@
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 require_once 'database.class.php';
 require_once 'send-email.class.php';
-session_start();
 
 class Cart extends Database {
 
@@ -101,8 +104,8 @@ class Cart extends Database {
     {   
         if (!empty($productID)) {
             $userID = $_SESSION['userID'];
-            $prepareStmt = $this->connect()->prepare("DELETE FROM item_Cart WHERE productID='" . $productID . "' AND userID='" . $userID . "'; ");
-            $prepareStmt->execute();
+            $prepareStmt = $this->connect()->prepare("DELETE FROM item_Cart WHERE productID=? AND userID=?; ");
+            $prepareStmt->execute(array($productID, $userID));
 
             header("Location:" . $_SERVER['PHP_SELF']);
         }
@@ -165,6 +168,16 @@ class Cart extends Database {
             echo "<script> window.location.href='../index.php?success=purchase'; </script>";
         }
     }
+
+    public function updateProductQuantityInCart($productID, $quantity) {
+        // $dbConn = new Database();
+        $userID = $_SESSION['userID'];
+        $prepareStmt = $this->connect()->prepare("UPDATE item_Cart SET quantity = $quantity WHERE productID = $productID AND userID = $userID ;");
+        $prepareStmt->execute();
+
+        header("Location:" . $_SERVER['PHP_SELF']);
+
+ }
 
 
 

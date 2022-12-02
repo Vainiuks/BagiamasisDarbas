@@ -1,5 +1,8 @@
 <?php
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
 require_once 'classes/cart.class.php';
 $cartObj = new Cart();
 $cartItemCount = $cartObj->getCartCount();

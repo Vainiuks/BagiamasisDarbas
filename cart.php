@@ -45,7 +45,7 @@ $cartPrice = $cartObj->getCartPrice();
                         class="img-fluid rounded-3" alt="<?php echo $value['product_Name']; ?>">
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-3">
-                      <h6 class="text-muted">Shirt</h6>
+                      <!-- <h6 class="text-muted"><?php echo $value['product_Type']; ?></h6> -->
                       <h6 class="text-black mb-0"><?php echo $value['product_Name']; ?></h6>
                     </div>
                     <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
@@ -54,22 +54,22 @@ $cartPrice = $cartObj->getCartPrice();
                         <i class="fa fa-minus"></i>
                       </button>
 
-                      <input id="form2" min="0" name="quantity" value="1" type="number"
+                      <input min="0" name="quantity-<?php echo $value['productID']; ?>" form="formq-<?php echo $value['productID']; ?>" value="<?php echo $value['quantity'];?>" type="number"
                         class="form-control form-control-sm" />
-
-                      <button class="btn btn-link px-2"
+                        <button class="btn btn-link px-2"
                         onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
                         <i class="fa fa-plus"></i>
                       </button>
                     </div>
                     <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                      <h6 class="mb-0"><?php echo $value['product_Price'] . '€'; ?></h6>
+                      <h6 class="mb-0"><?php echo ($value['product_Price'] * $value['quantity']) . '€'; ?></h6>
                     </div>
-                    <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                      <form action="handling/cart.han.php" method="POST" >
-                        <input type="hidden" value='<?php echo $value['productID']; ?>' name="productID">
+                    <div class="col-md-1 col-lg-1 col-xl" style="margin-left: 20px;">
+                      <form id="formq-<?php echo $value['productID']; ?>" action="handling/cart.han.php" method="POST" >
+                        <input id="" type="hidden" value='<?php echo $value['productID']; ?>' name="productID">
+                        <button type="submit" name="update_product_quantity" class="fa fa-save" style="border:none; background-color:white;"></button>
+                        
                         <button type="submit" name="remove_from_cart_submit" class="fa fa-times" style="border:none; background-color:white;"></button>
-                        <!-- <a href="../../handling/cart.han.php" class="text-muted" name="remove_product_from_cart"><i class="fa fa-times"></i></a> -->
                       </form>
                     </div>
                   </div>
@@ -77,10 +77,11 @@ $cartPrice = $cartObj->getCartPrice();
 
                   <hr class="my-4">
 
+                  <div class="d-flex justify-content-between align-items-center mb-5">
+                    <h6 class="mb-0"><a href="index.php" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Atgal į pagrindinį puslapį</a></h6>
+                  </div>
 
                   <div class="pt-5">
-                    <h6 class="mb-0"><a href="index.php" class="text-body"><i
-                          class="fas fa-long-arrow-alt-left me-2"></i>Atgal į pagrindinį puslapį</a></h6>
                   </div>
                 </div>
               </div>
@@ -94,7 +95,7 @@ $cartPrice = $cartObj->getCartPrice();
                     <h5><?php echo $cartPrice . '€'; ?></h5>
                   </div>
 
-                  <h5 class="text-uppercase mb-3">Siųntimas</h5>
+                  <!-- <h5 class="text-uppercase mb-3">Siųntimas</h5>
 
                   <div class="mb-4 pb-2">
                     <select class="select">
@@ -103,7 +104,7 @@ $cartPrice = $cartObj->getCartPrice();
                       <option value="3">Three</option>
                       <option value="4">Four</option>
                     </select>
-                  </div>
+                  </div> -->
 
                   <hr class="my-4">
 
