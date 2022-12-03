@@ -155,16 +155,16 @@ if (isset($_GET['window'])) {
                 <hr class="my-3">
                 <div class="e-navlist e-navlist--active-bold">
                   <ul class="nav">
-                    <li class="nav-item active"><a href="" class="nav-link"><span>All</span>&nbsp;<small>/&nbsp;32</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Active</span>&nbsp;<small>/&nbsp;16</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Selected</span>&nbsp;<small>/&nbsp;0</small></a></li>
+                    <li class="nav-item active"><a href="" class="nav-link"><span>Visi</span>&nbsp;<small>/&nbsp;32</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Aktyvus</span>&nbsp;<small>/&nbsp;16</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Pasirinkti</span>&nbsp;<small>/&nbsp;0</small></a></li>
                   </ul>
                 </div>
                 <hr class="my-3">
                 <div>
                   <div class="form-group">
-                    <label>Search by Name:</label>
-                    <div><input class="form-control w-100" type="text" placeholder="Name" value=""></div>
+                    <label>Paieška pagal raktinį žodį:</label>
+                    <div><input class="form-control w-100" type="text" placeholder="Pavadinimas" value=""></div>
                   </div>
                 </div>
                 <hr class="my-3">
@@ -238,8 +238,16 @@ if (isset($_GET['window'])) {
                         <div class="row">
                           <div class="col mb-3">
                             <div class="form-group">
-                              <label></label>
+                              <label>Prekės aprašymas</label>
                               <textarea class="form-control" name="productDescription" rows="5" placeholder="Prekės aprašymas..."></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="custom-file">
+                              <label class="custom-file-label" for="picture">Pasirinkite nuotrauką...</label>
+                              <input type="file" class="custom-file-input" name="productImage" id="picture" required>
                             </div>
                           </div>
                         </div>
@@ -344,16 +352,16 @@ if (isset($_GET['window'])) {
                 <hr class="my-3">
                 <div class="e-navlist e-navlist--active-bold">
                   <ul class="nav">
-                    <li class="nav-item active"><a href="" class="nav-link"><span>All</span>&nbsp;<small>/&nbsp;32</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Active</span>&nbsp;<small>/&nbsp;16</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Selected</span>&nbsp;<small>/&nbsp;0</small></a></li>
+                    <li class="nav-item active"><a href="" class="nav-link"><span>Visi</span>&nbsp;<small>/&nbsp;32</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Aktyvus</span>&nbsp;<small>/&nbsp;16</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Pasrinkti</span>&nbsp;<small>/&nbsp;0</small></a></li>
                   </ul>
                 </div>
                 <hr class="my-3">
                 <div>
                   <div class="form-group">
-                    <label>Search by Name:</label>
-                    <div><input class="form-control w-100" type="text" placeholder="Name" value=""></div>
+                    <label>Paieška pagal raktinį žodį:</label>
+                    <div><input class="form-control w-100" type="text" placeholder="Žodis" value=""></div>
                   </div>
                 </div>
                 <hr class="my-3">
@@ -488,16 +496,16 @@ if (isset($_GET['window'])) {
                 <hr class="my-3">
                 <div class="e-navlist e-navlist--active-bold">
                   <ul class="nav">
-                    <li class="nav-item active"><a href="" class="nav-link"><span>All</span>&nbsp;<small>/&nbsp;32</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Active</span>&nbsp;<small>/&nbsp;16</small></a></li>
-                    <li class="nav-item"><a href="" class="nav-link"><span>Selected</span>&nbsp;<small>/&nbsp;0</small></a></li>
+                    <li class="nav-item active"><a href="" class="nav-link"><span>Visi</span>&nbsp;<small>/&nbsp;32</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Aktyvus</span>&nbsp;<small>/&nbsp;16</small></a></li>
+                    <li class="nav-item"><a href="" class="nav-link"><span>Pasirinkti</span>&nbsp;<small>/&nbsp;0</small></a></li>
                   </ul>
                 </div>
                 <hr class="my-3">
                 <div>
                   <div class="form-group">
-                    <label>Search by Name:</label>
-                    <div><input class="form-control w-100" type="text" placeholder="Name" value=""></div>
+                    <label>Paieška pagal raktinį žodį</label>
+                    <div><input class="form-control w-100" type="text" placeholder="Žodis" value=""></div>
                   </div>
                 </div>
                 <hr class="my-3">
