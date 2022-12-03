@@ -9,6 +9,7 @@ $productObj = new Product();
 $cartObj = new Cart();
 $filterObj = new Filter();
 
+$getProducts = array();
 $getProducts = $productObj->getProducts();
 $currentProductsInCart = array();
 $currentProductsInCart = $cartObj->getProductsFromCart();
@@ -42,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     array_push($submitted_Filters, $filter);
                 }
         }
-        // $productObj->getFilteredProducts($submitted_Filters);
+        $getProducts = $productObj->getFilteredProducts($submitted_Filters);
     }
 }
 
