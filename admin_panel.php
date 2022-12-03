@@ -119,6 +119,7 @@ if (isset($_GET['window'])) {
                             <td class="text-center align-middle">
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
+                                  <input type="hidden" name="product_Image" value="<?php echo $value['product_Image']; ?>">
                                   <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
                                   <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_product"><i class="fa fa-trash"></i></button>
                                 </form>

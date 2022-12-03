@@ -74,9 +74,10 @@ class Product extends Database
         return $productArray;        
     }
 
-    public function deleteProduct($productID)
+    public function deleteProduct($productID, $productImage)
     {   
         if (!empty($productID)) {
+            unlink($productImage);
             $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
             $prepareStmt->execute(array($productID));
 

@@ -4,10 +4,11 @@ if (isset($_POST['delete_product'])) {
 
     //Getting data from form
     $productID = $_POST['productID'];
+    $productImage = $_POST['product_Image'];
 
     require_once '../classes/product.class.php';
     $product = new Product();
-    $product->deleteProduct($productID);
+    $product->deleteProduct($productID, $productImage);
 
     header("location: ../admin_panel.php?window=product");
 }
