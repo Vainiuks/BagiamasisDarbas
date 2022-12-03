@@ -6,7 +6,6 @@ if(!isset($_SESSION))
 require_once 'classes/cart.class.php';
 $cartObj = new Cart();
 $cartItemCount = $cartObj->getCartCount();
-// $cartItemCount = '0';
 
 $userType = "";
 
@@ -59,13 +58,13 @@ if (isset($_SESSION['userType'])) {
                                 <?Php echo $_SESSION['username']; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">User panel</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="#">Naudotojo panelė</a></li>
+                                <li><a class="dropdown-item" href="#">Kiti veiksmai</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="handling/logout.han.php">Logout</a>
+                                    <a class="dropdown-item" href="handling/logout.han.php">Atsijungti</a>
                                 </li>
                             </ul>
                         </li>
@@ -76,22 +75,22 @@ if (isset($_SESSION['userType'])) {
                                 <?Php echo $_SESSION['username']; ?>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="admin_panel.php">Admin panel</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="admin_panel.php">Administratoriaus panelė</a></li>
+                                <li><a class="dropdown-item" href="#">Kiti veiksmai</a></li>
                                 <li>
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="logout.han.php">Logout</a>
+                                    <a class="dropdown-item" href="logout.han.php">Atsijungti</a>
                                 </li>
                             </ul>
                         </li>
                         <?php } else {?>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="login.php">Login</a>
+                            <a class="nav-link" aria-current="page" href="login.php">Prisijungti</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="registration.php">Sign up</a>
+                            <a class="nav-link" aria-current="page" href="registration.php">Registruotis</a>
                         </li>
                     <?php } ?>
                 </ul>

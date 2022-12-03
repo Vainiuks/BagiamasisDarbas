@@ -59,8 +59,8 @@ class Filter extends Database {
     public function deleteCategory($filterCategoryID)
     {   
         if (!empty($filterCategoryID)) {
-            // $prepareStmt = $this->connect()->prepare("DELETE FROM filter_category WHERE filterCategoryID=?; ");
-            // $prepareStmt->execute(array($filterCategoryID));
+            $prepareStmt = $this->connect()->prepare("DELETE FROM filter_category WHERE filterCategoryID=?; ");
+            $prepareStmt->execute(array($filterCategoryID));
 
             header("Location:" . $_SERVER['PHP_SELF']);
         }
@@ -81,6 +81,19 @@ class Filter extends Database {
         $prepareStmt = $this->connect()->prepare('INSERT INTO filter_attribute(filterCategoryID, attribute_Name, display_Name) VALUES(?,?,?);');
 
         if (!$prepareStmt->execute(array($categoryID, $attributeName, $displayName))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=attribute");
+            exit();
+        }
+
+        $prepareStmt = null;
+    }
+
+    public function createCategory($categoryName, $displayName) {
+
+        $prepareStmt = $this->connect()->prepare('INSERT INTO filter_category(category_Name, display_Category_Name) VALUES(?,?);');
+
+        if (!$prepareStmt->execute(array($categoryName, $displayName))) {
             $prepareStmt = null;
             header("location: ../admin_panel.php?error=stmtfailed&window=attribute");
             exit();

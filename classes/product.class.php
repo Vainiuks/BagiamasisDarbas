@@ -77,10 +77,23 @@ class Product extends Database
     public function deleteProduct($productID)
     {   
         if (!empty($productID)) {
-            // $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
-            // $prepareStmt->execute(array($productID));
+            $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
+            $prepareStmt->execute(array($productID));
 
             header("Location:" . $_SERVER['PHP_SELF']);
         }
+    }
+
+    public function createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription) {
+
+        $prepareStmt = $this->connect()->prepare('INSERT INTO product(product_Type, car_Model, car_Brand, product_Brand, product_Name, product_Price, product_Weight, product_Description, product_Image) VALUES(?,?,?,?,?,?,?,?,?);');
+
+        if (!$prepareStmt->execute(array($productType, $carModel, $carBrand, $productBrand, $productName, $productPrice, $productWeight, $productDescription, 1))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=category");
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 }

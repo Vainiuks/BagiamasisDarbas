@@ -150,7 +150,7 @@ if (isset($_GET['window'])) {
             <div class="card">
               <div class="card-body">
                 <div class="text-center px-xl-3">
-                  <button class="btn btn-success btn-block" type="submit" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">New product</button>
+                  <button class="btn btn-success btn-block" type="submit" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Nauja prekė</button>
                 </div>
                 <hr class="my-3">
                 <div class="e-navlist e-navlist--active-bold">
@@ -178,100 +178,77 @@ if (isset($_GET['window'])) {
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title">Create product</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                  <span aria-hidden="true">×</span>
-                </button>
+                <h5 class="modal-title">Sukurti naują prekę</h5>
               </div>
               <div class="modal-body">
                 <div class="py-1">
-                  <form class="form" novalidate="">
+                  <form class="form" action="handling/admin_panel.han.php" method="POST">
                     <div class="row">
                       <div class="col">
-                        <div class="row">
+                      <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Full Name</label>
-                              <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
+                              <label>Automobilio markė</label>
+                              <input class="form-control" type="text" name="carBrand" placeholder="BMW">
                             </div>
                           </div>
                           <div class="col">
                             <div class="form-group">
-                              <label>Username</label>
-                              <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
+                              <label>Automobilio modelis</label>
+                              <input class="form-control" type="text" name="carModel" placeholder="E39">
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
-                              <label>Email</label>
-                              <input class="form-control" type="text" placeholder="user@example.com">
+                              <label>Prekės prekinis ženklas</label>
+                              <input class="form-control" type="text" name="productBrand" placeholder="BOSCH">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės pavadinimas</label>
+                              <input class="form-control" type="text" name="productName" placeholder="Kuro filtras">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės kaina</label>
+                              <input class="form-control" type="text" name="productPrice" placeholder="7.99€">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės svoris</label>
+                              <input class="form-control" type="text" name="productWeight" placeholder="200g">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės tipas</label>
+                              <input class="form-control" name="productType" type="text" placeholder="kuro_filtras-product_Type">
                             </div>
                           </div>
                         </div>
                         <div class="row">
                           <div class="col mb-3">
                             <div class="form-group">
-                              <label>About</label>
-                              <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
+                              <label></label>
+                              <textarea class="form-control" name="productDescription" rows="5" placeholder="Prekės aprašymas..."></textarea>
                             </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="row">
-                      <div class="col-12 col-sm-6 mb-3">
-                        <div class="mb-2"><b>Change Password</b></div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Current Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>New Password</label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                              <input class="form-control" type="password" placeholder="••••••">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                        <div class="mb-2"><b>Keeping in Touch</b></div>
-                        <div class="row">
-                          <div class="col">
-                            <label>Email Notifications</label>
-                            <div class="custom-controls-stacked px-2">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                                <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                                <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                              </div>
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                                <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col d-flex justify-content-end">
-                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                    <div class="row pt-3">
+                      <div class="col d-flex justify-content-end space-between: 5px;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                        <button class="btn btn-primary" name="create_product" type="submit">Sukurti</button>
                       </div>
                     </div>
                   </form>
@@ -393,31 +370,29 @@ if (isset($_GET['window'])) {
               </div>
               <div class="modal-body">
                 <div class="py-1">
-                  <form class="form" novalidate="">
+                  <form class="form" method="POST" action="handling/admin_panel.han.php">
                     <div class="row">
                       <div class="col">
                         <div class="row">
                           <div class="col">
                             <div class="form-group">
                               <label>Kategorijos pavadinimas</label>
-                              <input class="form-control" type="text" placeholder="Stabdžių sistema">
+                              <input class="form-control" name="display_Category_Name" type="text" placeholder="Stabdžių sistema">
                             </div>
                           </div>
                         </div>
                         <div class="row pt-1">
                             <div class="form-group">
                               <label>Kategorijos pavadinimas duomenų bazėje</label>
-                              <input class="form-control" type="text" placeholder="stabdziai">
+                              <input class="form-control" name="category_Name" type="text" placeholder="stabdziai">
                             </div>
                         </div>
                       </div>
                     </div>
                     <div class="row pt-3">
-                      <div class="col d-flex justify-content-end space-between: 5px;">
+                      <div class="col d-flex justify-content-end" style="margin-left: 5px;">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
-                        <form action="" method="POST">
-                          <button class="btn btn-primary" name="create_category" type="submit">Sukurti</button>
-                        </form>
+                        <button class="btn btn-primary" name="create_category" type="submit">Sukurti</button>
                       </div>
                     </div>
                   </form>

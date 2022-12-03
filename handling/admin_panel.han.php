@@ -49,3 +49,35 @@ if (isset($_POST['create_attribute'])) {
 
     header("location: ../admin_panel.php?window=attribute");
 }
+
+if (isset($_POST['create_category'])) {
+
+    //Getting data from form
+    $categoryName = $_POST['category_Name'];
+    $displayName = $_POST['display_Category_Name'];
+    
+    require_once '../classes/filter.class.php';
+    $filter = new Filter();
+    $filter->createCategory($categoryName, $displayName);
+
+    header("location: ../admin_panel.php?window=category");
+}
+
+if (isset($_POST['create_product'])) {
+
+    //Getting data from form
+    $carBrand               = $_POST['carBrand'];
+    $carModel               = $_POST['carModel'];
+    $productBrand           = $_POST['productBrand'];
+    $productName            = $_POST['productName'];
+    $productPrice           = $_POST['productPrice'];
+    $productWeight          = $_POST['productWeight'];
+    $productType            = $_POST['productType'];
+    $productDescription     = $_POST['productDescription'];
+    
+    require_once '../classes/product.class.php';
+    $product = new Product();
+    $product->createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription);
+
+    header("location: ../admin_panel.php?window=product");
+}
