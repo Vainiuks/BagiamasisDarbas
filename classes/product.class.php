@@ -44,10 +44,8 @@ class Product extends Database
         $tmp = array();
         foreach($filters as $filter => $value) {
             $res = explode('-', $value);
-            VAR_EXPORT($res);
-            $filtersArray = 'as';
         }
-        die();
+        // die();
 
     }
 }

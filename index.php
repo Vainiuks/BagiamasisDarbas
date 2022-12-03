@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                     array_push($submitted_Filters, $filter);
                 }
         }
-        $productObj->getFilteredProducts($submitted_Filters);
+        // $productObj->getFilteredProducts($submitted_Filters);
     }
 }
 
@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                         <?php if ($value['category_Name'] == $a_value['category_Name']) : ?>
                                             <input  class="form-check-input" 
                                                     type="checkbox" 
-                                                    name="<?php echo $value['category_Name'] . "-" . $a_value['attribute_Name']; ?>" 
+                                                    name="<?php echo $a_value['attribute_Name']; ?>" 
                                                     value="<?php echo $a_value['display_Name']; ?>"
                                                 >
                                             <?php echo $a_value['display_Name']; ?>
@@ -150,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     <button class="btn btn-primary btn-sm" type="submit" name="productID" value="<?php printf($value['productID']); ?>">Aprašymas</button>
                                 </form>
                                 <?php if (isset($_SESSION['logged'])) : ?>
-                                    <form action="POST">
+                                    <form method="POST">
                                         <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
                                         <button class="btn btn-outline-primary btn-sm mt-2" type="submit" name="submit_product">Pridėti į krepšelį</button>
                                     </form>
