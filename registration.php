@@ -23,38 +23,38 @@ include_once 'navigation_bar.php';
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Registration</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+              <h2 class="fw-bold mb-2 text-uppercase">Registracija</h2>
+              <p class="text-white-50 mb-5">Užpildykite anketą, norėdami prisiregistruoti!</p>
               <form action="handling/registration.han.php" method="POST">
                 <div class="form-outline form-white mb-4">
                   <input type="text" id="typeEmailX" class="form-control form-control-lg" name="username" />
-                  <label class="form-label" for="typeEmailX">Username</label>
+                  <label class="form-label" for="typeEmailX">Naudotojo vardas</label>
                 </div>
   
                 <div class="form-outline form-white mb-4">
                   <input type="email" id="typeEmailX" class="form-control form-control-lg" name="email" />
-                  <label class="form-label" for="typeEmailX">Email</label>
+                  <label class="form-label" for="typeEmailX">Elektroninis paštas</label>
                 </div>
   
                 <div class="form-outline form-white mb-4">
                   <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
-                  <label class="form-label" for="typePasswordX">Password</label>
+                  <label class="form-label" for="typePasswordX">Slaptažodis</label>
                 </div>
   
                 <div class="form-outline form-white mb-4">
                   <input type="password" id="typePasswordX" class="form-control form-control-lg" name="repeatPassword"/>
-                  <label class="form-label" for="typePasswordX">Repeat password</label>
+                  <label class="form-label" for="typePasswordX">Pakartokite slaptažodį</label>
                 </div>
   
                 <!-- <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
   
-                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submitRegistration">Sign up</button>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submitRegistration">Prisiregistruoti</button>
               </form>
 
             </div>
 
             <div>
-              <p class="mb-0">Already have an account? <a href="#!" class="text-white-50 fw-bold">Login here</a>
+              <p class="mb-0">Jau turite paskyrą?<a href="login.php" class="text-white-50 fw-bold">Prisijunkite čia!</a>
               </p>
             </div>
 

@@ -23,30 +23,30 @@ require_once 'navigation_bar.php';
 
             <div class="mb-md-5 mt-md-4 pb-5">
 
-              <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-              <p class="text-white-50 mb-5">Please enter your login and password!</p>
+              <h2 class="fw-bold mb-2 text-uppercase">Prisijungimas</h2>
+              <p class="text-white-50 mb-5">Įveskite prisijungimo duomenis!</p>
 
               <form action="handling/login.han.php" method="POST">
                 <div class="form-outline form-white mb-4">
                   <input type="text" id="" class="form-control form-control-lg" name="username" />
-                  <label class="form-label" for="">Username</label>
+                  <label class="form-label" for="">Naudotojo vardas</label>
                 </div>
   
                 <div class="form-outline form-white mb-4">
                   <input type="password" id="typePasswordX" class="form-control form-control-lg" name="password" />
-                  <label class="form-label" for="typePasswordX">Password</label>
+                  <label class="form-label" for="typePasswordX">Slaptažodis</label>
                 </div>
   
                 <!-- <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p> -->
   
-                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submitLogin">Login</button>
+                <button class="btn btn-outline-light btn-lg px-5" type="submit" name="submitLogin">Prisijungti</button>
               </form>
 
 
             </div>
 
             <div>
-              <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign up here</a>
+              <p class="mb-0">Neturite paskytos?<a href="registration.php" class="text-white-50 fw-bold">Prisiregistruoite čia!</a>
               </p>
             </div>
 
