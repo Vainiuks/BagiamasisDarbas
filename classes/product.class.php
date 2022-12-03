@@ -73,4 +73,14 @@ class Product extends Database
 
         return $productArray;        
     }
+
+    public function deleteProduct($productID)
+    {   
+        if (!empty($productID)) {
+            // $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
+            // $prepareStmt->execute(array($productID));
+
+            header("Location:" . $_SERVER['PHP_SELF']);
+        }
+    }
 }

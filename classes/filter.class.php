@@ -55,4 +55,24 @@ class Filter extends Database {
 
         return $attributes;
     }
+
+    public function deleteCategory($filterCategoryID)
+    {   
+        if (!empty($filterCategoryID)) {
+            // $prepareStmt = $this->connect()->prepare("DELETE FROM filter_category WHERE filterCategoryID=?; ");
+            // $prepareStmt->execute(array($filterCategoryID));
+
+            header("Location:" . $_SERVER['PHP_SELF']);
+        }
+    }
+
+    public function deleteAttribute($filterAttributeID)
+    {   
+        if (!empty($filterAttributeID)) {
+            // $prepareStmt = $this->connect()->prepare("DELETE FROM filter_attribute WHERE filterAttributeID=?; ");
+            // $prepareStmt->execute(array($filterAttributeID));
+
+            header("Location:" . $_SERVER['PHP_SELF']);
+        }
+    }
 }
