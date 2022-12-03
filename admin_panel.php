@@ -182,7 +182,7 @@ if (isset($_GET['window'])) {
               </div>
               <div class="modal-body">
                 <div class="py-1">
-                  <form class="form" action="handling/admin_panel.han.php" method="POST">
+                  <form class="form" action="handling/admin_panel.han.php" method="POST" enctype="multipart/form-data">
                     <div class="row">
                       <div class="col">
                       <div class="row">
@@ -247,7 +247,7 @@ if (isset($_GET['window'])) {
                           <div class="col">
                             <div class="custom-file">
                               <label class="custom-file-label" for="picture">Pasirinkite nuotrauką...</label>
-                              <input type="file" class="custom-file-input" name="productImage" id="picture" required>
+                              <input type="file" class="custom-file-input" name="productImage" id="picture">
                             </div>
                           </div>
                         </div>

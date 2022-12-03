@@ -75,9 +75,18 @@ if (isset($_POST['create_product'])) {
     $productType            = $_POST['productType'];
     $productDescription     = $_POST['productDescription'];
     
+    $file = $_FILES['productImage'];
+    $fileName = $_FILES['productImage']['name'];
+    $fileTempName = $_FILES['productImage']['tmp_name'];
+    $fileSize = $_FILES['productImage']['size'];
+    $fileError = $_FILES['productImage']['error'];
+    $fileType = $_FILES['productImage']['type'];
+    
+
     require_once '../classes/product.class.php';
     $product = new Product();
-    $product->createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription);
+    $product->uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType);
+    $product->createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $fileName);
 
     header("location: ../admin_panel.php?window=product");
 }

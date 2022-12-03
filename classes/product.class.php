@@ -84,16 +84,40 @@ class Product extends Database
         }
     }
 
-    public function createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription) {
+    public function createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $productImage) {
 
         $prepareStmt = $this->connect()->prepare('INSERT INTO product(product_Type, car_Model, car_Brand, product_Brand, product_Name, product_Price, product_Weight, product_Description, product_Image) VALUES(?,?,?,?,?,?,?,?,?);');
 
-        if (!$prepareStmt->execute(array($productType, $carModel, $carBrand, $productBrand, $productName, $productPrice, $productWeight, $productDescription, 1))) {
+        if (!$prepareStmt->execute(array($productType, $carModel, $carBrand, $productBrand, $productName, $productPrice, $productWeight, $productDescription, "includes/product_images/" . $productImage))) {
             $prepareStmt = null;
             header("location: ../admin_panel.php?error=stmtfailed&window=category");
             exit();
         }
 
         $prepareStmt = null;
+    }
+
+    public function uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType) {
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
+
+        $allowedExt = array('jpg', 'jpeg', 'png');
+
+        if (in_array($fileActualExt, $allowedExt)) {
+            if ($fileError === 0) {
+                if ($fileSize < 500000) {
+                    // $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+                    // include_once './';
+                    $fileDestination = '../includes/product_images/' . $fileName;
+                    move_uploaded_file($fileTempName, $fileDestination);
+                } else {
+                    header("location: ../admin_panel.php?error=filetoobig");
+                }
+            } else {
+                header("location: ../admin_panel.php?error=erroruploadingfile");
+            }
+        } else {
+            header("location: ../admin_panel.php?error=cantuploadfile");
+        }
     }
 }
