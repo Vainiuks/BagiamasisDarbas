@@ -35,3 +35,17 @@ if (isset($_POST['delete_attribute'])) {
 
     header("location: ../admin_panel.php?window=attribute");
 }
+
+if (isset($_POST['create_attribute'])) {
+
+    //Getting data from form
+    $attributeName = $_POST['attribute_Name'];
+    $displayName = $_POST['display_Name'];
+    $categoryID = $_POST['filterCategoryID'];
+    
+    require_once '../classes/filter.class.php';
+    $filter = new Filter();
+    $filter->createAttribute($attributeName, $displayName, $categoryID);
+
+    header("location: ../admin_panel.php?window=attribute");
+}

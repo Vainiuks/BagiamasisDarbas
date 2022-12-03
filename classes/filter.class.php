@@ -69,10 +69,23 @@ class Filter extends Database {
     public function deleteAttribute($filterAttributeID)
     {   
         if (!empty($filterAttributeID)) {
-            // $prepareStmt = $this->connect()->prepare("DELETE FROM filter_attribute WHERE filterAttributeID=?; ");
-            // $prepareStmt->execute(array($filterAttributeID));
+            $prepareStmt = $this->connect()->prepare("DELETE FROM filter_attribute WHERE filterAttributeID=?; ");
+            $prepareStmt->execute(array($filterAttributeID));
 
             header("Location:" . $_SERVER['PHP_SELF']);
         }
+    }
+
+    public function createAttribute($attributeName, $displayName, $categoryID) {
+
+        $prepareStmt = $this->connect()->prepare('INSERT INTO filter_attribute(filterCategoryID, attribute_Name, display_Name) VALUES(?,?,?);');
+
+        if (!$prepareStmt->execute(array($categoryID, $attributeName, $displayName))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=attribute");
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 }
