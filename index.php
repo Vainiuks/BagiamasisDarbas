@@ -4,9 +4,6 @@ include_once 'classes/product.class.php';
 include_once 'classes/cart.class.php';
 include_once 'classes/filter.class.php';
 
-// Failui istrinti
-// unlink('includes/product_images/1234.jpg');
-
 $productObj = new Product();
 $cartObj = new Cart();
 $filterObj = new Filter();
