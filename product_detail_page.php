@@ -220,6 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 											</p>
 											<a href="#!" class="link-muted" style="margin-left:10px;"><i class="fa fa-pencil"></i></a>
 											<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-window-close"></i></a>
+											<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-ban"></i></a>
 										</div>
 										<p class="mb-0">
 											Lorem Ipsum is simply dummy text of the printing and typesetting
