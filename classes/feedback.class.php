@@ -74,7 +74,7 @@ class FeedBack extends Database {
 
         $userID = $_SESSION['userID'];
         $sql = "
-        SELECT pc.productCommentID, pc.userID, pc.receiptID, pc.product_Comment, pc.comment_Date, pc.productID, u.user_Username
+        SELECT pc.productCommentID, pc.userID, pc.receiptID, pc.product_Comment, pc.comment_Date, pc.productID, u.user_Username, u.userID, u.is_Able_To_Comment
         FROM product_comment as pc
         LEFT JOIN product as p
         ON p.productID = pc.productID
@@ -95,5 +95,31 @@ class FeedBack extends Database {
         }
 
         return $comments;
+    }
+
+    public function deleteComment($commentID, $productID) {
+
+        if (!empty($productID) && !empty($commentID)) {
+            $prepareStmt = $this->connect()->prepare("DELETE FROM product_comment WHERE productID=? AND productCommentID=?; ");
+            $prepareStmt->execute(array($productID, $commentID));
+
+            header("Location:" . $_SERVER['PHP_SELF']);
+        }
+    }
+
+    public function updateComment() {
+
+    }
+
+    public function banUserFromCommenting($userID, $productID) {
+
+        $prepareStmt = $this->connect()->prepare("UPDATE users SET is_Able_To_Comment = ? WHERE userID = ? ; ");
+        if (!$prepareStmt->execute(array('No', $userID))) {
+            $prepareStmt = null;
+            header("location: ../product_detail_page.php?error=stmtfailed?productID=" . $productID);
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 }

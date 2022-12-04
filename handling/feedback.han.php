@@ -12,3 +12,29 @@ if (isset($_POST['confirm_comment'])) {
 
     header("location: ../product_detail_page.php?error=none&productID=" . $productID);
 }
+
+if (isset($_POST['delete_comment'])) {
+    
+    //Getting data from form
+    $commentID = $_POST['productCommentID'];
+    $productID = $_POST['productID'];
+    
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->deleteComment($commentID, $productID);
+
+    header("location: ../product_detail_page.php?error=none&productID=" . $productID);
+}
+
+if (isset($_POST['ban_user'])) {
+    
+    //Getting data from form
+    $userID = $_POST['userID'];
+    $productID = $_POST['productID'];
+
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->banUserFromCommenting($userID, $productID);
+
+    header("location: ../product_detail_page.php?error=none&productID=" . $productID);
+}

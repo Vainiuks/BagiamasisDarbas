@@ -1,8 +1,7 @@
 <?php
-if(!isset($_SESSION)) 
-{ 
-    session_start(); 
-} 
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 include_once 'navigation_bar.php';
 require_once "classes/product.class.php";
@@ -17,7 +16,6 @@ $currentProductsInCart = array();
 $currentProductsInCart = $cartObj->getProductsFromCart();
 $purchasedProductArray = array();
 $usersComments = array();
-
 
 $productID = "";
 if (isset($_GET['productID'])) {
@@ -245,26 +243,34 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 								<h4 class="mb-0">Naujausi atsiliepimai</h4>
 
 								<?php foreach ($usersComments as $comment => $value) : ?>
-								<div class="d-flex flex-start border py-1">
-										<div>
-											<h6 class="fw-bold mb-1"><?php echo $value['user_Username']; ?> </h6>
+									<form action="handling/feedback.han.php" method="POST">
+										<div class="d-flex flex-start border py-1">
+											<div>
+												<h6 class="fw-bold mb-1"><?php echo $value['user_Username']; ?> </h6>
 
-											<div class="d-flex align-items-center mb-3">
+												<div class="d-flex align-items-center mb-3">
+													<p class="mb-0">
+														<?php echo $value['comment_Date']; ?>
+													</p>
+													<button class="" name="update_comment" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-pencil"></i></button>
+													<input type="hidden" name="userID" value="<?php echo $value['userID']; ?>">
+													<input type="hidden" name="productCommentID" value="<?php echo $value['productCommentID']; ?>">
+													<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
+													<button class="" name="delete_comment" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-window-close"></i></button>
+
+													<?php if ($value['is_Able_To_Comment'] == 'Yes') : ?>
+														<?php if (isset($_SESSION['userType']) == 'Admin') : ?>
+															<button class="" name="ban_user" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-ban"></i></button>
+														<?php endif; ?>
+													<?php endif; ?>
+												</div>
 												<p class="mb-0">
-													<?php echo $value['comment_Date']; ?> 
+													<?php echo $value['product_Comment']; ?>
 												</p>
-												<a href="#!" class="link-muted" style="margin-left:10px;"><i class="fa fa-pencil"></i></a>
-												<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-window-close"></i></a>
-												<?php if(isset($_SESSION['user_Type']) == 'Admin'): ?>
-												<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-ban"></i></a>
-												<?php endif; ?>
 											</div>
-											<p class="mb-0">
-												<?php echo $value['product_Comment']; ?>
 										</div>
-										</p>
-									</div>
-									<?php endforeach; ?>
+									</form>
+								<?php endforeach; ?>
 							</div>
 
 							<hr class="my-0" style="height: 1px;" />
