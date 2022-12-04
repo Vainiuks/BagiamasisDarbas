@@ -124,6 +124,7 @@ if (isset($_POST['update_category'])) {
 if (isset($_POST['update_product'])) {
 
     //Getting data from form
+    $productID              = $_POST['productID'];
     $carBrand               = $_POST['carBrand'];
     $carModel               = $_POST['carModel'];
     $productBrand           = $_POST['productBrand'];
@@ -132,19 +133,28 @@ if (isset($_POST['update_product'])) {
     $productWeight          = $_POST['productWeight'];
     $productType            = $_POST['productType'];
     $productDescription     = $_POST['productDescription'];
-    
-    $file = $_FILES['productImage'];
-    $fileName = $_FILES['productImage']['name'];
-    $fileTempName = $_FILES['productImage']['tmp_name'];
-    $fileSize = $_FILES['productImage']['size'];
-    $fileError = $_FILES['productImage']['error'];
-    $fileType = $_FILES['productImage']['type'];
-    
+    $productImage           = "";
+    $oldPicture             = "";
+
+
+    if(isset($_FILES['productNewImage']['name']) && !empty($_FILES['productNewImage']['name'])) {
+        $oldPicture = $_POST['product_Image'];
+        $file = $_FILES['productNewImage'];
+        $productImage = $_FILES['productNewImage']['name'];        
+        $fileTempName = $_FILES['productNewImage']['tmp_name'];
+        $fileSize = $_FILES['productNewImage']['size'];
+        $fileError = $_FILES['productNewImage']['error'];
+        $fileType = $_FILES['productNewImage']['type'];
+    } else {
+        $productImage = $_POST['product_Image'];
+    }
 
     require_once '../classes/product.class.php';
     $product = new Product();
-    $product->uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType);
-    $product->createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $fileName);
+    if(isset($_FILES['productNewImage']['name']) && !empty($_FILES['productNewImage']['name'])) {
+        $product->uploadPicture($productImage, $fileTempName, $fileSize, $fileError, $fileType, $oldPicture);
+    }
+    $product->updateProduct($productID, $carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $productImage);
 
     header("location: ../admin_panel.php?window=product");
 }

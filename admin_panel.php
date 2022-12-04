@@ -249,8 +249,8 @@ if (isset($_GET['window'])) {
                           <div class="col">
                             <div class="custom-file">
                               <input type="hidden" name="product_Image" value="<?php echo $value['product_Image']; ?>">
-                              <label class="custom-file-label" for="picture">Pasirinkite nuotrauką...</label>
-                              <input type="file" class="custom-file-input" name="productImage" id="picture">
+                              <label class="custom-file-label" for="picture2">Pasirinkite nuotrauką...</label>
+                              <input type="file" class="custom-file-input" name="productNewImage" id="picture2">
                             </div>
                           </div>
                         </div>
@@ -258,6 +258,7 @@ if (isset($_GET['window'])) {
                     </div>
                     <div class="row pt-3">
                       <div class="col d-flex justify-content-end space-between: 5px;">
+                      <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
                         <button class="btn btn-primary" name="update_product" type="submit">Atnaujinti</button>
                       </div>

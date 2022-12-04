@@ -77,7 +77,7 @@ class Product extends Database
     public function deleteProduct($productID, $productImage)
     {   
         if (!empty($productID)) {
-            unlink($productImage);
+            unlink("../" . $productImage);
             $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
             $prepareStmt->execute(array($productID));
 
@@ -98,7 +98,13 @@ class Product extends Database
         $prepareStmt = null;
     }
 
-    public function uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType) {
+    public function uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType, $oldPicture) {
+
+        if(isset($oldPicture) && !empty($oldPicture)) {
+            unlink("../" . $oldPicture);
+        }
+
+
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
 
@@ -120,5 +126,22 @@ class Product extends Database
         } else {
             header("location: ../admin_panel.php?error=cantuploadfile");
         }
+    }
+
+    public function updateProduct($productID, $carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $productImage) {
+
+        if(!str_contains($productImage, "includes/product_images/")) {
+            $productImage = "includes/product_images/" . $productImage;
+        } 
+
+        $prepareStmt = $this->connect()->prepare('UPDATE product SET product_Type = ?, car_Model = ?, car_Brand = ?, product_Brand = ?, product_Name = ?, product_Price = ?, product_Weight = ?, product_Description = ?, product_Image = ?  WHERE productID = ? ;');
+        
+        if (!$prepareStmt->execute(array($productType, $carModel, $carBrand, $productBrand, $productName, $productPrice, $productWeight, $productDescription, $productImage, $productID))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=product");
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 }
