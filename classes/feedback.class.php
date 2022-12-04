@@ -107,8 +107,16 @@ class FeedBack extends Database {
         }
     }
 
-    public function updateComment() {
+    public function updateComment($comment, $commentID, $productID) {
 
+        $prepareStmt = $this->connect()->prepare("UPDATE product_Comment SET product_Comment = ? WHERE productCommentID = ? ; ");
+        if (!$prepareStmt->execute(array($comment, $commentID))) {
+            $prepareStmt = null;
+            header("location: ../product_detail_page.php?error=stmtfailed?productID=" . $productID);
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 
     public function banUserFromCommenting($userID, $productID) {

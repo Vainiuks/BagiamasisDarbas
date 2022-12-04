@@ -243,16 +243,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 								<h4 class="mb-0">Naujausi atsiliepimai</h4>
 
 								<?php foreach ($usersComments as $comment => $value) : ?>
-									<form action="handling/feedback.han.php" method="POST">
-										<div class="d-flex flex-start border py-1">
-											<div>
-												<h6 class="fw-bold mb-1"><?php echo $value['user_Username']; ?> </h6>
+									<div class="d-flex flex-start border py-1">
+										<div>
+											<h6 class="fw-bold mb-1"><?php echo $value['user_Username']; ?> </h6>
 
-												<div class="d-flex align-items-center mb-3">
+											<div class="d-flex align-items-center mb-3">
+												<form action="handling/feedback.han.php" method="POST">
 													<p class="mb-0">
 														<?php echo $value['comment_Date']; ?>
 													</p>
-													<button class="" name="update_comment" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-pencil"></i></button>
+													<!-- <button class="" name="update_comment" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-pencil"></i></button> -->
 													<input type="hidden" name="userID" value="<?php echo $value['userID']; ?>">
 													<input type="hidden" name="productCommentID" value="<?php echo $value['productCommentID']; ?>">
 													<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
@@ -263,13 +263,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 															<button class="" name="ban_user" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-ban"></i></button>
 														<?php endif; ?>
 													<?php endif; ?>
-												</div>
-												<p class="mb-0">
-													<?php echo $value['product_Comment']; ?>
-												</p>
+												</form>
+												<button class="" type="" name="" style="border: none; background-color: white; margin-left: 4px;" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateComment<?php echo $value['userID'] . "-" . $value['productCommentID']; ?>"><i class="fa fa-pencil"></i></button>
 											</div>
+											<p class="mb-0">
+												<?php echo $value['product_Comment']; ?>
+											</p>
 										</div>
-									</form>
+									</div>
 								<?php endforeach; ?>
 							</div>
 
@@ -279,6 +280,49 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				</div>
 			</div>
 		</section>
+
+
+		<?php foreach ($usersComments as $comment => $value) : ?>
+			<div class="modal fade" role="dialog" tabindex="-1" id="updateComment<?php echo $value['userID'] . "-" . $value['productCommentID']; ?>">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Atnaujinti komentara</h5>
+						</div>
+						<div class="modal-body">
+							<div class="py-1">
+								<form class="form" action="handling/feedback.han.php" method="POST">
+									<div class="row">
+										<div class="col">
+											<div class="row">
+												<div class="col mb-3">
+													<div class="form-group">
+														<label>Komentaras</label>
+														<textarea class="form-control" name="productComment" rows="5" placeholder="<?php echo $value['product_Comment']; ?>"><?php echo $value['product_Comment'] ?></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="row pt-3">
+										<div class="col d-flex justify-content-end space-between: 5px;">
+											<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
+											<input type="hidden" name="productCommentID" value="<?php echo $value['productCommentID']; ?>">
+											<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+											<button class="btn btn-primary" name="update_comment" type="submit">Atnaujinti</button>
+										</div>
+									</div>
+								</form>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php endforeach; ?>
+
+
+
 
 		<!-- <h2>Users feedback</h2>
         <?php foreach ($comments as $comment => $key) { ?>

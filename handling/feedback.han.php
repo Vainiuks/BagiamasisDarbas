@@ -38,3 +38,17 @@ if (isset($_POST['ban_user'])) {
 
     header("location: ../product_detail_page.php?error=none&productID=" . $productID);
 }
+
+if (isset($_POST['update_comment'])) {
+    
+    //Getting data from form
+    $comment = $_POST['productComment'];
+    $commentID = $_POST['productCommentID'];
+    $productID = $_POST['productID'];
+    
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->updateComment($comment, $commentID, $productID);
+
+    header("location: ../product_detail_page.php?error=none&productID=" . $productID);
+}
