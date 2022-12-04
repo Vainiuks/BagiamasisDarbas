@@ -2,16 +2,38 @@
 include_once 'navigation_bar.php';
 require_once "classes/product.class.php";
 require_once "classes/cart.class.php";
+require_once 'classes/feedback.class.php';
+
 $productObj = new Product();
 $cartObj = new Cart();
+$feedbackObj = new FeedBack();
 $product = array();
 $currentProductsInCart = array();
 $currentProductsInCart = $cartObj->getProductsFromCart();
+$purchasedProductArray = array();
 
 $productID = "";
 if (isset($_GET['productID'])) {
 	$productID = $_GET['productID'];
 }
+
+$comment = false;
+$commentStatus = false;
+$statusOfComment = $feedbackObj->getCommentStatus($productID);
+
+foreach ($statusOfComment as $status => $value) {
+	if ($value['is_Able_To_Comment'] == 'Yes') {
+		$commentStatus = true;
+	}
+}
+
+$purchasedProductArray = $feedbackObj->getProductsOnWhichUserCanComment($productID);
+foreach ($purchasedProductArray as $product => $value) {
+	if ($value['productID'] == $productID) {
+		$comment = true;
+	}
+}
+
 
 $product = $productObj->getProductById($productID);
 
@@ -179,28 +201,32 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 			<?php endforeach; ?>
 		</div>
 
-		<div class="d-flex justify-content-center gx-5" style="padding: 5px;">
-			<div class="col-lg-10 col-md-6 p-3">
-				<div class="card mb-8">
-					<div class="card-header py-3">
-						<h5 class="mb-0">Palikite atsiliepimą</h5>
-					</div>
-					<div class="card-body">
-						<form method="POST" action="handling/feedback.han.php">
-							<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
-							<div class="form-outline mb-4">
-								<textarea name="comment_input" id="" cols="134" rows="4" placeholder="Komentaras..."></textarea>
-								<label class="form-label" for="form7Example5">Jūsų komentaras</label>
+
+		<?php if ($commentStatus == true) : ?>
+			<?php if ($comment == true) : ?>
+				<div class="d-flex justify-content-center gx-5" style="padding: 5px;">
+					<div class="col-lg-10 col-md-6 p-3">
+						<div class="card mb-8">
+							<div class="card-header py-3">
+								<h5 class="mb-0">Palikite atsiliepimą</h5>
 							</div>
-							<button type="submit" class="btn btn-primary btn-lg btn-block" name="confirm_comment">
-								Palikti atsiliepimą
-							</button>
-						</form>
+							<div class="card-body">
+								<form method="POST" action="handling/feedback.han.php">
+									<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
+									<div class="form-outline mb-4">
+										<textarea name="comment_input" id="" cols="134" rows="4" placeholder="Komentaras..."></textarea>
+										<label class="form-label" for="form7Example5">Jūsų komentaras</label>
+									</div>
+									<button type="submit" class="btn btn-primary btn-lg btn-block" name="confirm_comment">
+										Palikti atsiliepimą
+									</button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-
+			<?php endif; ?>
+		<?php endif; ?>
 
 		<section style="background-color: #ad655f;">
 			<div class="container py-1">
