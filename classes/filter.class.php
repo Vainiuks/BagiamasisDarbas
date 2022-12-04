@@ -101,4 +101,30 @@ class Filter extends Database {
 
         $prepareStmt = null;
     }
+    
+    public function updateAttribute($attributeName, $displayName, $categoryID, $attributeID) {
+        
+        $prepareStmt = $this->connect()->prepare('UPDATE filter_attribute SET filterCategoryID = ?, attribute_Name = ?, display_Name = ? WHERE filterAttributeID = ? ;');
+
+        if (!$prepareStmt->execute(array($categoryID, $attributeName, $displayName, $attributeID))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=attribute");
+            exit();
+        }
+
+        $prepareStmt = null;
+    }
+
+    public function updateCategory($categoryName, $displayName, $categoryID) {
+
+        $prepareStmt = $this->connect()->prepare('UPDATE filter_category SET category_Name = ?, display_Category_Name = ? WHERE filterCategoryID = ? ;');
+
+        if (!$prepareStmt->execute(array($categoryName, $displayName, $categoryID))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?error=stmtfailed&window=attribute");
+            exit();
+        }
+
+        $prepareStmt = null;
+    }
 }
