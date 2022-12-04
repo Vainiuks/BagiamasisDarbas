@@ -81,7 +81,7 @@ if (isset($_SESSION['userType'])) {
                                     <hr class="dropdown-divider" />
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="logout.han.php">Atsijungti</a>
+                                    <a class="dropdown-item" href="handling/logout.han.php">Atsijungti</a>
                                 </li>
                             </ul>
                         </li>
