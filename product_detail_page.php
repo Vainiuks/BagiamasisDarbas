@@ -86,8 +86,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 						<article class="gallery-wrap">
 							<div class="img-big-wrap">
 								<div> <a href="#"><img src="<?php echo $value['product_Image']; ?>"></a></div>
-							</div> <!-- slider-product.// -->
-						</article> <!-- gallery-wrap .end// -->
+							</div>
+						</article>
 					</aside>
 					<aside class="col-sm-7">
 						<article class="card-body p-5">
@@ -98,14 +98,13 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 									<span class="currency">Eur €</span><span class="num"><?php echo $value['product_Price']; ?></span>
 								</span>
 								<span></span>
-							</p> <!-- price-detail-wrap .// -->
+							</p>
 
 
 
 
 
 
-							<!-- star rating -->
 							<div class="rating-wrapper">
 								<!-- star 5 -->
 								<input type="radio" id="5-star-rating" name="star-rating" value="5">

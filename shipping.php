@@ -67,8 +67,8 @@ $cartPrice = $cartObj->getCartPrice();
                             </div>
 
                             <!-- <div class="form-outline mb-4">
-                                <textarea class="form-control" id="form7Example7" rows="4"></textarea>
-                                <label class="form-label" for="form7Example7">Additional information</label>
+                                <textarea class="form-control" id="additionalInfo" rows="4"></textarea>
+                                <label class="form-label" for="additionalInfo">Additional information</label>
                             </div> -->
                         </form>
                     </div>
