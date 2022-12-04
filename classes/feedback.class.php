@@ -10,9 +10,9 @@ class FeedBack extends Database {
 
         $userID = $_SESSION['userID'];
         $currentDate = Date("Y-m-d H:i:s");
-        $prepareStmt = $this->connect()->prepare('INSERT INTO product_comment(userID, receiptID, product_Comment, comment_Date) VALUES(?,?,?,?);');
+        $prepareStmt = $this->connect()->prepare('INSERT INTO product_comment(userID, receiptID, productID, product_Comment, comment_Date) VALUES(?,?,?,?,?);');
 
-        if (!$prepareStmt->execute(array($userID, 1, $comment, $currentDate))) {
+        if (!$prepareStmt->execute(array($userID, 1, $productID, $comment, $currentDate))) {
             $prepareStmt = null;
             header("location: ../product_detail_page.php?error=stmtfailed?productID=" . $productID);
             exit();
@@ -68,5 +68,32 @@ class FeedBack extends Database {
         }
         
         return $commentStatus;
+    }
+
+    public function getComments($productID) {
+
+        $userID = $_SESSION['userID'];
+        $sql = "
+        SELECT pc.productCommentID, pc.userID, pc.receiptID, pc.product_Comment, pc.comment_Date, pc.productID, u.user_Username
+        FROM product_comment as pc
+        LEFT JOIN product as p
+        ON p.productID = pc.productID
+        LEFT JOIN receipt as r
+        ON pc.receiptID = r.receiptID
+        CROSS JOIN users as u
+        WHERE pc.userID = u.userID 
+        AND pc.productID = '{$productID}'
+        ";
+
+        $results = $this->mysqli()->query($sql);
+        $comments = []; 
+
+        if($results) {
+            while($row = $results->fetch_array()) {
+                $comments[] = $row;
+            }
+        }
+
+        return $comments;
     }
 }

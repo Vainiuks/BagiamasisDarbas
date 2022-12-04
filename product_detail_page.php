@@ -1,4 +1,9 @@
 <?php
+if(!isset($_SESSION)) 
+{ 
+    session_start(); 
+} 
+
 include_once 'navigation_bar.php';
 require_once "classes/product.class.php";
 require_once "classes/cart.class.php";
@@ -11,11 +16,15 @@ $product = array();
 $currentProductsInCart = array();
 $currentProductsInCart = $cartObj->getProductsFromCart();
 $purchasedProductArray = array();
+$usersComments = array();
+
 
 $productID = "";
 if (isset($_GET['productID'])) {
 	$productID = $_GET['productID'];
 }
+
+$usersComments = $feedbackObj->getComments($productID);
 
 $comment = false;
 $commentStatus = false;
@@ -235,26 +244,27 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 							<div class="card-body p-1">
 								<h4 class="mb-0">Naujausi atsiliepimai</h4>
 
-								<div class="d-flex flex-start">
-									<div>
-										<h6 class="fw-bold mb-1">Maggie Marsh</h6>
+								<?php foreach ($usersComments as $comment => $value) : ?>
+								<div class="d-flex flex-start border py-1">
+										<div>
+											<h6 class="fw-bold mb-1"><?php echo $value['user_Username']; ?> </h6>
 
-										<div class="d-flex align-items-center mb-3">
+											<div class="d-flex align-items-center mb-3">
+												<p class="mb-0">
+													<?php echo $value['comment_Date']; ?> 
+												</p>
+												<a href="#!" class="link-muted" style="margin-left:10px;"><i class="fa fa-pencil"></i></a>
+												<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-window-close"></i></a>
+												<?php if(isset($_SESSION['user_Type']) == 'Admin'): ?>
+												<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-ban"></i></a>
+												<?php endif; ?>
+											</div>
 											<p class="mb-0">
-												March 07, 2021
-											</p>
-											<a href="#!" class="link-muted" style="margin-left:10px;"><i class="fa fa-pencil"></i></a>
-											<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-window-close"></i></a>
-											<a href="#!" class="link-muted" style="margin-left:4px;"><i class="fa fa-ban"></i></a>
+												<?php echo $value['product_Comment']; ?>
 										</div>
-										<p class="mb-0">
-											Lorem Ipsum is simply dummy text of the printing and typesetting
-											industry. Lorem Ipsum has been the industry's standard dummy text ever
-											since the 1500s, when an unknown printer took a galley of type and
-											scrambled it.
 										</p>
 									</div>
-								</div>
+									<?php endforeach; ?>
 							</div>
 
 							<hr class="my-0" style="height: 1px;" />
