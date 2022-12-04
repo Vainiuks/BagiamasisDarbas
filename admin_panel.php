@@ -121,9 +121,9 @@ if (isset($_GET['window'])) {
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="product_Image" value="<?php echo $value['product_Image']; ?>">
                                   <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
-                                  <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_product"><i class="fa fa-trash"></i></button>
+                                  <button class="btn btn-sm btn-outline-secondary" type="submit" name="delete_product"><i class="fa fa-trash"></i></button>
                                 </form>
-                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateProductModal<?php echo $value['productID']; ?>">Edit</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateProductModal<?php echo $value['productID']; ?>"><i class="fa fa-pencil"></i></button>
                               </div>
                             </td>
                           </tr>
@@ -416,9 +416,9 @@ if (isset($_GET['window'])) {
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="filterCategoryID" value="<?php echo $value['filterCategoryID']; ?>">
-                                  <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_category"><i class="fa fa-trash"></i></button>
+                                  <button class="btn btn-sm btn-outline-secondary" type="submit" name="delete_category"><i class="fa fa-trash"></i></button>
                                 </form>
-                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#categoryModal<?php echo $value['filterCategoryID']; ?>">Edit</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#categoryModal<?php echo $value['filterCategoryID']; ?>"><i class="fa fa-pencil"></i></button>
                               </div>
                             </td>
                           </tr>
@@ -606,9 +606,9 @@ if (isset($_GET['window'])) {
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="filterAttributeID" value="<?php echo $value['filterAttributeID']; ?>">
-                                  <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_attribute"><i class="fa fa-trash"></i></button>
+                                  <button class="btn btn-sm btn-outline-secondary" type="submit" name="delete_attribute"><i class="fa fa-trash"></i></button>
                                 </form>
-                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateAttributeModal<?php echo $value['filterAttributeID']; ?>">Edit</button>
+                                <button class="btn btn-sm btn-outline-secondary" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateAttributeModal<?php echo $value['filterAttributeID']; ?>"><i class="fa fa-pencil"></i></button>
                               </div>
                             </td>
                           </tr>
