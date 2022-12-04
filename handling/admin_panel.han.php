@@ -91,3 +91,30 @@ if (isset($_POST['create_product'])) {
 
     header("location: ../admin_panel.php?window=product");
 }
+
+if (isset($_POST['update_attribute'])) {
+
+    //Getting data from form
+    $attributeName = $_POST['attribute_Name'];
+    $displayName = $_POST['display_Name'];
+    $categoryID = $_POST['filterCategoryID'];
+    
+    require_once '../classes/filter.class.php';
+    $filter = new Filter();
+    $filter->updateAttribute($attributeName, $displayName, $categoryID);
+
+    header("location: ../admin_panel.php?window=attribute");
+}
+
+if (isset($_POST['create_category'])) {
+
+    //Getting data from form
+    $categoryName = $_POST['category_Name'];
+    $displayName = $_POST['display_Category_Name'];
+    
+    require_once '../classes/filter.class.php';
+    $filter = new Filter();
+    $filter->updateCategory($categoryName, $displayName);
+
+    header("location: ../admin_panel.php?window=category");
+}

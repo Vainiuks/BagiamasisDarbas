@@ -26,7 +26,7 @@ class Filter extends Database {
     public function getAttributes() {
          
             $sql2 = "
-            SELECT a.filterAttributeID, a.display_Name, c.category_Name, p.product_Type as attribute_Name
+            SELECT c.filterCategoryID, a.filterAttributeID, a.display_Name, c.category_Name, p.product_Type as attribute_Name
             FROM filter_attribute as a
             LEFT JOIN filter_category as c
             ON a.filterCategoryID = c.filterCategoryID

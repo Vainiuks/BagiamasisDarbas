@@ -123,7 +123,7 @@ if (isset($_GET['window'])) {
                                   <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
                                   <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_product"><i class="fa fa-trash"></i></button>
                                 </form>
-                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="update_product" data-toggle="modal" data-target="#1user-form-modal">Edit</button>
+                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateProductModal<?php echo $value['productID']; ?>">Edit</button>
                               </div>
                             </td>
                           </tr>
@@ -151,7 +151,7 @@ if (isset($_GET['window'])) {
             <div class="card">
               <div class="card-body">
                 <div class="text-center px-xl-3">
-                  <button class="btn btn-success btn-block" type="submit" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#exampleModal">Nauja prekė</button>
+                  <button class="btn btn-success btn-block" type="submit" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#productModal">Nauja prekė</button>
                 </div>
                 <hr class="my-3">
                 <div class="e-navlist e-navlist--active-bold">
@@ -174,8 +174,105 @@ if (isset($_GET['window'])) {
           </div>
         </div>
 
-        <!-- User Form Modal -->
-        <div class="modal fade" role="dialog" tabindex="-1" id="exampleModal">
+        <!-- Atnaujinti produkta modal -->
+        <?php foreach($products as $product => $value): ?>
+        <div class="modal fade" role="dialog" tabindex="-1" id="updateProductModal<?php echo $value['productID']; ?>">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Atnaujinti prekę</h5>
+              </div>
+              <div class="modal-body">
+                <div class="py-1">
+                  <form class="form" action="handling/admin_panel.han.php" method="POST" enctype="multipart/form-data">
+                    <div class="row">
+                      <div class="col">
+                      <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Automobilio markė</label>
+                              <input class="form-control" type="text" name="carBrand" value="<?php echo $value['car_Brand'] ?>" placeholder="<?php echo $value['car_Brand']; ?>">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Automobilio modelis</label>
+                              <input class="form-control" type="text" name="carModel" value="<?php echo $value['car_Model'] ?>" placeholder="<?php echo $value['car_Model']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės prekinis ženklas</label>
+                              <input class="form-control" type="text" name="productBrand" value="<?php echo $value['product_Brand'] ?>" placeholder="<?php echo $value['product_Brand']; ?>">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės pavadinimas</label>
+                              <input class="form-control" type="text" name="productName" value="<?php echo $value['product_Brand'] ?>" placeholder="<?php echo $value['product_Brand']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės kaina</label>
+                              <input class="form-control" type="text" name="productPrice" value="<?php echo $value['product_Price'] ?>" placeholder="<?php echo $value['product_Price']; ?>">
+                            </div>
+                          </div>
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės svoris</label>
+                              <input class="form-control" type="text" name="productWeight" value="<?php echo $value['product_Weight'] ?>" placeholder="<?php echo $value['product_Weight']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Prekės tipas</label>
+                              <input class="form-control" name="productType" type="text" value="<?php echo $value['product_Type'] ?>" placeholder="<?php echo $value['product_Type']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col mb-3">
+                            <div class="form-group">
+                              <label>Prekės aprašymas</label>
+                              <textarea class="form-control" name="productDescription" rows="5" placeholder="<?php echo $value['product_Description']; ?>"><?php echo $value['product_Description'] ?></textarea>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col">
+                            <div class="custom-file">
+                              <input type="hidden" name="product_Image" value="<?php echo $value['product_Image']; ?>">
+                              <label class="custom-file-label" for="picture">Pasirinkite nuotrauką...</label>
+                              <input type="file" class="custom-file-input" name="productImage" id="picture">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col d-flex justify-content-end space-between: 5px;">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                        <button class="btn btn-primary" name="update_product" type="submit">Atnaujinti</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+
+        <!-- Sukurti produkta modal -->
+        <div class="modal fade" role="dialog" tabindex="-1" id="productModal">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -232,7 +329,7 @@ if (isset($_GET['window'])) {
                           <div class="col">
                             <div class="form-group">
                               <label>Prekės tipas</label>
-                              <input class="form-control" name="productType" type="text" placeholder="kuro_filtras-product_Type">
+                              <input class="form-control" name="productType" type="text" value="<?php echo $value['car_Brand'] ?>" placeholder="<?php echo $value['car_Brand']; ?>">
                             </div>
                           </div>
                         </div>
@@ -318,9 +415,9 @@ if (isset($_GET['window'])) {
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="filterCategoryID" value="<?php echo $value['filterCategoryID']; ?>">
-                                  <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="update_category" data-toggle="modal" data-target="#user-form-modal">Edit</button>
                                   <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_category"><i class="fa fa-trash"></i></button>
                                 </form>
+                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#categoryModal<?php echo $value['filterCategoryID']; ?>">Edit</button>
                               </div>
                             </td>
                           </tr>
@@ -371,6 +468,52 @@ if (isset($_GET['window'])) {
           </div>
         </div>
 
+        <!-- Atnaujinti kategorija modal -->
+        <?php foreach($categories as $category => $value): ?>
+        <div class="modal fade" role="dialog" tabindex="-1" id="categoryModal<?php echo $value['filterCategoryID']; ?>">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Atnaujinti filtro kategoriją</h5>
+              </div>
+              <div class="modal-body">
+                <div class="py-1">
+                  <form class="form" method="POST" action="handling/admin_panel.han.php">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Kategorijos pavadinimas</label>
+                              <input class="form-control" name="display_Category_Name" type="text" value="<?php echo $value['display_Category_Name']; ?>" placeholder="<?php echo $value['display_Category_Name']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row pt-1">
+                            <div class="form-group">
+                              <label>Kategorijos pavadinimas duomenų bazėje</label>
+                              <input class="form-control" name="category_Name" type="text" value="<?php echo $value['category_Name']; ?>" placeholder="<?php echo $value['category_Name']; ?>">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col d-flex justify-content-end" style="margin-left: 5px;">
+                      <input type="hidden" name="filterCategoryID" value="<?php echo $value['filterCategoryID']; ?>">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                        <button class="btn btn-primary" name="update_category" type="submit">Atnaujinti</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+
+        <!-- Sukurti nauja kategorija modal -->
         <div class="modal fade" role="dialog" tabindex="-1" id="categoryModal">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -462,9 +605,9 @@ if (isset($_GET['window'])) {
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="filterAttributeID" value="<?php echo $value['filterAttributeID']; ?>">
-                                  <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="update_attribute" data-toggle="modal" data-target="#user-form-modal">Edit</button>
                                   <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="delete_attribute"><i class="fa fa-trash"></i></button>
                                 </form>
+                                <button class="btn btn-sm btn-outline-secondary badge" type="submit" name="" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateAttributeModal<?php echo $value['filterAttributeID']; ?>">Edit</button>
                               </div>
                             </td>
                           </tr>
@@ -515,7 +658,58 @@ if (isset($_GET['window'])) {
           </div>
         </div>
 
+        <!-- Atnaujinti filtro pozymi -->
+        <?php foreach($attributes as $attribute => $value): ?>
+        <div class="modal fade" role="dialog" tabindex="-1" id="updateAttributeModal<?php echo $value['filterAttributeID']; ?>">
+          <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Atnaujinti filtro požymį</h5>
+              </div>
+              <div class="modal-body">
+                <div class="py-1">
+                  <form class="form" action="handling/admin_panel.han.php" method="POST">
+                    <div class="row">
+                      <div class="col">
+                        <div class="row">
+                          <div class="col">
+                            <div class="form-group">
+                              <label>Požymio pavadinimas</label>
+                              <input class="form-control" name="display_Name" type="text" value="<?php echo $value['display_Name']; ?>" placeholder="<?php echo $value['display_Name']; ?>">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row pt-1">
+                            <div class="form-group">
+                              <label>Požymio pavadinimas duomenų bazėje</label>
+                              <input class="form-control" name="attribute_Name" type="text" value="<?php echo $value['attribute_Name']; ?>" placeholder="<?php echo $value['attribute_Name']; ?>">
+                            </div>
+                        </div>
+                        <div class="row pt-1">
+                            <div class="form-group">
+                              <label>Kuriai kategorijai priskirti šį požymį</label>
+                              <input class="form-control" name="filterCategoryID" type="text" value="<?php echo $value['filterCategoryID']; ?>" placeholder="1 - šis ID priklauso filtrams">
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row pt-3">
+                      <div class="col d-flex justify-content-end space-between: 5px;">
+                      <input type="hidden" name="filterAttributeID" value="<?php echo $value['filterAttributeID']; ?>">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
+                        <button class="btn btn-primary" name="update_attribute" type="submit">Atnaujinti</button>
+                      </div>
+                    </div>
+                  </form>
 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <?php endforeach; ?>
+
+        <!-- Sukurti nauja filtro pozymi -->
         <div class="modal fade" role="dialog" tabindex="-1" id="attributeModal">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
