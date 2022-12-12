@@ -130,4 +130,31 @@ class FeedBack extends Database {
 
         $prepareStmt = null;
     }
+
+    public function getCommentsForAdminPanel() {
+
+        $userID = $_SESSION['userID'];
+        $sql = "
+        SELECT pc.productCommentID, pc.userID, pc.product_Comment, pc.comment_Date, u.user_Username, u.userID, u.is_Able_To_Comment
+        FROM product_comment as pc
+        LEFT JOIN product as p
+        ON p.productID = pc.productID
+        LEFT JOIN receipt as r
+        ON pc.receiptID = r.receiptID
+        CROSS JOIN users as u
+        WHERE pc.userID = u.userID 
+        ";
+
+        $results = $this->mysqli()->query($sql);
+        $comments = []; 
+
+        if($results) {
+            while($row = $results->fetch_array()) {
+                $comments[] = $row;
+            }
+        }
+
+        return $comments;
+
+    }
 }
