@@ -220,7 +220,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 								<form method="POST" action="handling/feedback.han.php">
 									<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
 									<div class="form-outline mb-4">
-										<textarea name="comment_input" id="" cols="134" rows="4" placeholder="Komentaras..."></textarea>
+										<textarea name="comment_input" id="" cols="126" rows="4" placeholder="Komentaras..."></textarea>
 										<label class="form-label" for="form7Example5">Jūsų komentaras</label>
 									</div>
 									<button type="submit" class="btn btn-primary btn-lg btn-block" name="confirm_comment">
@@ -257,6 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 													<input type="hidden" name="productCommentID" value="<?php echo $value['productCommentID']; ?>">
 													<input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
 													<button class="" name="delete_comment" style="border: none; background-color: white; margin-left: 4px;" type="submit"><i class="fa fa-window-close"></i></button>
+													<button class="" type="button" name="" style="border: none; background-color: white; margin-left: 4px;" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateComment<?php echo $value['userID'] . "-" . $value['productCommentID']; ?>"><i class="fa fa-pencil"></i></button>
 
 													<?php if ($value['is_Able_To_Comment'] == 'Yes') : ?>
 														<?php if (isset($_SESSION['userType']) == 'Admin') : ?>
@@ -264,7 +265,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 														<?php endif; ?>
 													<?php endif; ?>
 												</form>
-												<button class="" type="" name="" style="border: none; background-color: white; margin-left: 4px;" data-toggle="modal" data-bs-toggle="modal" data-bs-target="#updateComment<?php echo $value['userID'] . "-" . $value['productCommentID']; ?>"><i class="fa fa-pencil"></i></button>
 											</div>
 											<p class="mb-0">
 												<?php echo $value['product_Comment']; ?>
