@@ -320,27 +320,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 				</div>
 			</div>
 		<?php endforeach; ?>
-
-
-
-
-		<!-- <h2>Users feedback</h2>
-        <?php foreach ($comments as $comment => $key) { ?>
-            <div class="row3" style="margin-top: 0px;">
-                <div class="comment_container">
-                <div class="dialog_box">
-                    <div class="body">
-                        <span class="tip tip-up"></span>
-                        <p>Commented by:<?php echo " " . $key['userUsername']; ?> / Date:<?php echo " " . $key['commentDate']; ?></p>
-                        <div class="message">
-                            <span><?php echo $key['productComment']; ?></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-        <?php } ?> -->
-
 	</div>
 
 	<div class="py-5"></div>

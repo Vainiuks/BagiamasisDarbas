@@ -931,54 +931,6 @@ $_SESSION['panel_window'] = 'product';
           </div>
         </div>
         <?php endforeach; ?>
-
-        <!-- Sukurti nauja filtro pozymi -->
-        <div class="modal fade" role="dialog" tabindex="-1" id="attributeModal">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Sukurti naują požymį</h5>
-              </div>
-              <div class="modal-body">
-                <div class="py-1">
-                  <form class="form" action="handling/admin_panel.han.php" method="POST">
-                    <div class="row">
-                      <div class="col">
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Požymio pavadinimas</label>
-                              <input class="form-control" name="display_Name" type="text" placeholder="Kuro filtras">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row pt-1">
-                            <div class="form-group">
-                              <label>Požymio pavadinimas duomenų bazėje</label>
-                              <input class="form-control" name="attribute_Name" type="text" placeholder="kuro_filtras-product_Type">
-                            </div>
-                        </div>
-                        <div class="row pt-1">
-                            <div class="form-group">
-                              <label>Kuriai kategorijai priskirti šį požymį</label>
-                              <input class="form-control" name="filterCategoryID" type="text" placeholder="1 - šis ID priklauso filtrams">
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row pt-3">
-                      <div class="col d-flex justify-content-end space-between: 5px;">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
-                        <button class="btn btn-primary" name="create_attribute" type="submit">Sukurti</button>
-                      </div>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="col" style="margin-top: 20px; display:block;" id="ShippingPanel">
@@ -1142,109 +1094,13 @@ $_SESSION['panel_window'] = 'product';
         </div>
         <?php endforeach; ?>
 
-        <!-- Sukurti produkta modal -->
-        <div class="modal fade" role="dialog" tabindex="-1" id="productModal">
-          <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Sukurti naują prekę</h5>
-              </div>
-              <div class="modal-body">
-                <div class="py-1">
-                  <form class="form" action="handling/admin_panel.han.php" method="POST" enctype="multipart/form-data">
-                    <div class="row">
-                      <div class="col">
-                      <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Automobilio markė</label>
-                              <input class="form-control" type="text" name="carBrand" placeholder="BMW">
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Automobilio modelis</label>
-                              <input class="form-control" type="text" name="carModel" placeholder="E39">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Prekės prekinis ženklas</label>
-                              <input class="form-control" type="text" name="productBrand" placeholder="BOSCH">
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Prekės pavadinimas</label>
-                              <input class="form-control" type="text" name="productName" placeholder="Tepalo filtras">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Prekės kaina</label>
-                              <input class="form-control" type="text" name="productPrice" placeholder="7.99€">
-                            </div>
-                          </div>
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Prekės svoris</label>
-                              <input class="form-control" type="text" name="productWeight" placeholder="200g">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="form-group">
-                              <label>Prekės tipas</label>
-                              <input class="form-control" name="productType" type="text" value="" placeholder="tepalo_filtras">
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col mb-3">
-                            <div class="form-group">
-                              <label>Prekės aprašymas</label>
-                              <textarea class="form-control" name="productDescription" rows="5" placeholder="Prekės aprašymas..."></textarea>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col">
-                            <div class="custom-file">
-                              <label class="custom-file-label" for="picture">Pasirinkite nuotrauką...</label>
-                              <input type="file" class="custom-file-input" name="productImage" id="picture">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row pt-3">
-                      <div class="col d-flex justify-content-end space-between: 5px;">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Uždaryti</button>
-                        <button class="btn btn-primary" name="create_product" type="submit">Sukurti</button>
-                      </div>
-                    </div>
-                  </form>
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </div>
 
-
-
 </body>
 
 </html>
-
 
 <script>
   const product = document.getElementById('product_panel');
