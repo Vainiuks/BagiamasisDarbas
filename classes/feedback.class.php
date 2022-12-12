@@ -135,7 +135,7 @@ class FeedBack extends Database {
 
         $userID = $_SESSION['userID'];
         $sql = "
-        SELECT pc.productCommentID, pc.userID, pc.product_Comment, pc.comment_Date, u.user_Username, u.userID, u.is_Able_To_Comment
+        SELECT pc.productCommentID, pc.productID, pc.userID, pc.product_Comment, pc.comment_Date, u.user_Username, u.userID, u.is_Able_To_Comment
         FROM product_comment as pc
         LEFT JOIN product as p
         ON p.productID = pc.productID
@@ -156,5 +156,29 @@ class FeedBack extends Database {
 
         return $comments;
 
+    }
+
+    public function updateCommentTable($comment, $commentID) {
+
+        $prepareStmt = $this->connect()->prepare("UPDATE product_Comment SET product_Comment = ? WHERE productCommentID = ? ; ");
+        if (!$prepareStmt->execute(array($comment, $commentID))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?window=comment");
+            exit();
+        }
+
+        $prepareStmt = null;
+    }
+
+    public function banUserFromCommenting2($userID) {
+
+        $prepareStmt = $this->connect()->prepare("UPDATE users SET is_Able_To_Comment = ? WHERE userID = ? ; ");
+        if (!$prepareStmt->execute(array('No', $userID))) {
+            $prepareStmt = null;
+            header("location: ../admin_panel.php?window=comment");
+            exit();
+        }
+
+        $prepareStmt = null;
     }
 }

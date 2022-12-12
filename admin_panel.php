@@ -835,6 +835,8 @@ $_SESSION['panel_window'] = 'product';
                               <div class="btn-group align-top">
                                 <form action="handling/admin_panel.han.php" method="POST">
                                   <input type="hidden" name="productCommentID" value="<?php echo $value['productCommentID']; ?>">
+                                  <input type="hidden" name="productID" value="<?php echo $value['productID']; ?>">
+                                  <input type="hidden" name="userID" value="<?php echo $value['userID']; ?>">
                                   <button class="btn btn-sm btn-outline-secondary" type="submit" name="delete_comment"><i class="fa fa-trash"></i></button>
                                   <button class="btn btn-sm btn-outline-secondary" type="submit" name="ban_user"><i class="fa fa-ban"></i></button>
                                 </form>
@@ -906,12 +908,6 @@ $_SESSION['panel_window'] = 'product';
                             <div class="form-group">
                               <label>Komentaras</label>
                               <input class="form-control" name="product_Comment" type="text" value="<?php echo $value['product_Comment']; ?>" placeholder="<?php echo $value['product_Comment']; ?>">
-                            </div>
-                        </div>
-                        <div class="row pt-1">
-                            <div class="form-group">
-                              <label>Ar gali komentuoti</label>
-                              <input class="form-control" name="is_Able_To_Comment" type="text" value="<?php echo $value['is_Able_To_Comment']; ?>" placeholder="is_Able_To_Comment">
                             </div>
                         </div>
                       </div>

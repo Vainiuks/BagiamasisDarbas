@@ -86,7 +86,7 @@ if (isset($_POST['create_product'])) {
 
     require_once '../classes/product.class.php';
     $product = new Product();
-    $product->uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType);
+    $product->uploadPicture($fileName, $fileTempName, $fileSize, $fileError, $fileType, '');
     $product->createProduct($carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $fileName);
 
     header("location: ../admin_panel.php?window=product");
@@ -157,4 +157,70 @@ if (isset($_POST['update_product'])) {
     $product->updateProduct($productID, $carBrand, $carModel, $productBrand, $productName, $productPrice,  $productWeight, $productType, $productDescription, $productImage);
 
     header("location: ../admin_panel.php?window=product");
+}
+
+if (isset($_POST['delete_comment'])) {
+
+    //Getting data from form
+    $productCommentID = $_POST['productCommentID'];
+    $productID = $_POST['productID'];
+    
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->deleteComment($productCommentID, $productID);
+
+    header("location: ../admin_panel.php?window=comment");
+}
+
+if (isset($_POST['delete_receipt'])) {
+
+    //Getting data from form
+    $receiptID = $_POST['receiptID'];
+    
+    require_once '../classes/receipt.class.php';
+    $receipt = new Receipt();
+    $receipt->deleteReceipt($receiptID);
+
+    header("location: ../admin_panel.php?window=shipping");
+}
+
+if (isset($_POST['update_receipt'])) {
+
+    //Getting data from form
+    $deliveryDate = $_POST['deliveryDate'];
+    $homeAddress = $_POST['homeAddress'];
+    $emailAddress = $_POST['emailAddress'];
+    $city = $_POST['city'];
+    $receiptID = $_POST['receiptID'];
+    
+    require_once '../classes/receipt.class.php';
+    $receipt = new Receipt();
+    $receipt->updateReceipt($deliveryDate, $homeAddress, $city, $emailAddress, $receiptID);
+
+    header("location: ../admin_panel.php?window=category");
+}
+
+if (isset($_POST['update_comment'])) {
+
+    //Getting data from form
+    $comment = $_POST['product_Comment'];
+    $productCommentID = $_POST['productCommentID'];
+    
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->updateCommentTable($comment, $productCommentID);
+
+    header("location: ../admin_panel.php?window=comment");
+}
+
+if (isset($_POST['ban_user'])) {
+
+    //Getting data from form
+    $userID = $_POST['userID'];
+    
+    require_once '../classes/feedback.class.php';
+    $feedback = new FeedBack();
+    $feedback->banUserFromCommenting2($userID);
+
+    header("location: ../admin_panel.php?window=comment");
 }
