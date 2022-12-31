@@ -10,7 +10,6 @@ class SignupController extends Signup
 
     public function __construct($username, $password, $passwordRepeat, $email)
     {
-
         $this->username = $username;
         $this->password = $password;
         $this->passwordRepeat = $passwordRepeat;

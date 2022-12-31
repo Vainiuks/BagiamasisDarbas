@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         <div class="row" style="margin-top:5px;">
             <div class="col-lg-3 col-md-6">
             <form method="POST">
-                <div class="accordion" id="accordionExample">
+                <div class="accordion" id="accordionRealization">
                     <?php foreach ($categories as $category => $value) : ?>
                         <div class="card">
                             <div class="card-header" id="heading<?php echo $value['category_Name']; ?>">
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                                     </button>
                                 </h5>
                             </div>
-                            <div id="collapse<?php echo $value['category_Name']; ?>" class="collapse" aria-labelledby="heading<?php echo $value['category_Name']; ?>" data-parent="#accordionExample">
+                            <div id="collapse<?php echo $value['category_Name']; ?>" class="collapse" aria-labelledby="heading<?php echo $value['category_Name']; ?>" data-parent="#accordionRealization">
                                 <div class="card-body">
                                     <?php foreach ($attributes as $attribute => $a_value) : ?>
                                         <?php if ($value['category_Name'] == $a_value['category_Name']) : ?>

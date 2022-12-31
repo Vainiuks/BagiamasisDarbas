@@ -58,6 +58,7 @@ class Product extends Database
         if ($sql) {
                 $query .= ' WHERE ( ' . implode(' OR ', $sql) . ' )';
         } 
+        
         $prepareStmt = $this->connect()->prepare($query);
         if(!$prepareStmt->execute()) {
             $prepareStmt = null;
@@ -76,7 +77,7 @@ class Product extends Database
 
     public function deleteProduct($productID, $productImage)
     {   
-        if (!empty($productID)) {
+        if (!empty($productID) && !($productImage)) {
             unlink("../" . $productImage);
             $prepareStmt = $this->connect()->prepare("DELETE FROM product WHERE productID=?; ");
             $prepareStmt->execute(array($productID));
@@ -104,7 +105,6 @@ class Product extends Database
             unlink("../" . $oldPicture);
         }
 
-
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
 
@@ -113,8 +113,6 @@ class Product extends Database
         if (in_array($fileActualExt, $allowedExt)) {
             if ($fileError === 0) {
                 if ($fileSize < 500000) {
-                    // $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-                    // include_once './';
                     $fileDestination = '../includes/product_images/' . $fileName;
                     move_uploaded_file($fileTempName, $fileDestination);
                 } else {
